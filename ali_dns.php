@@ -11,13 +11,13 @@ include_once './config.php';
 
 use Alidns\Request\V20150109 as Alidns;
 
-echo "======================= BEGIN =============================";
+echo "======================= BEGIN =============================\n";
 $iClientProfile = DefaultProfile::getProfile("cn-hangzhou", ACCESS_KEYID, ACCESS_SECRET);
 $client = new DefaultAcsClient($iClientProfile);
 $update_records = get_records_list($client);
 $public_ip = http(IP_URL, []);
 update_records($client, $update_records, $public_ip);
-echo "======================== END ==============================";
+echo "======================== END ==============================\n";
 /**
  * get_records_list 获取dns列表
  * 2018/9/30 10:50:04
