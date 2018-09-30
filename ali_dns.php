@@ -11,12 +11,13 @@ include_once './config.php';
 
 use Alidns\Request\V20150109 as Alidns;
 
+echo "======================= BEGIN =============================";
 $iClientProfile = DefaultProfile::getProfile("cn-hangzhou", ACCESS_KEYID, ACCESS_SECRET);
 $client = new DefaultAcsClient($iClientProfile);
 $update_records = get_records_list($client);
 $public_ip = http(IP_URL, []);
 update_records($client, $update_records, $public_ip);
-
+echo "======================== END ==============================";
 /**
  * get_records_list 获取dns列表
  * 2018/9/30 10:50:04
@@ -25,7 +26,6 @@ update_records($client, $update_records, $public_ip);
  */
 function get_records_list($client)
 {
-
     $request = new Alidns\DescribeDomainRecordsRequest();
     $request->setMethod("GET");
     $request->setActionName('DescribeDomainRecords');
@@ -42,6 +42,14 @@ function get_records_list($client)
     return $update_records;
 }
 
+/**
+ * update_records 更新解析记录
+ * @param $client
+ * @param $update_records
+ * @param $public_ip
+ * 2018/9/30 12:35:42
+ * @author 田继业 <tjy_we@163.com>
+ */
 function update_records($client, $update_records, $public_ip)
 {
     foreach ($update_records as $record) {
