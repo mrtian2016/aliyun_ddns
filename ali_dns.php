@@ -15,7 +15,7 @@ echo "======================= BEGIN =============================\n";
 $iClientProfile = DefaultProfile::getProfile("cn-hangzhou", ACCESS_KEYID, ACCESS_SECRET);
 $client = new DefaultAcsClient($iClientProfile);
 $update_records = get_records_list($client);
-$public_ip = http(IP_URL, []);
+$public_ip = http(IP_URL);
 update_records($client, $update_records, $public_ip);
 echo "======================== END ==============================\n";
 /**
