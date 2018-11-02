@@ -30,6 +30,7 @@ function get_records_list($client)
     $request->setMethod("GET");
     $request->setActionName('DescribeDomainRecords');
     $request->setDomainName(DOMAIN);
+    $request->setPageSize(100);
     $response = $client->getAcsResponse($request);
     $records = $response->DomainRecords->Record;
     $update_records = [];
